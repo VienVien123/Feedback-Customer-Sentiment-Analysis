@@ -1,69 +1,68 @@
+# Customer Sentiment Analysis Through Feedback
 
-# Phân Tích Cảm Xúc Khách Hàng Thông Qua Feedback
-
-## Mục Lục
-1. [Giới Thiệu](#giới-thiệu)
-2. [Quy Trình Phân Tích Dữ Liệu](#quy-trình-phân-tích-dữ-liệu)
-3. [Phương Pháp Gắn Nhãn Dữ Liệu](#phương-pháp-gắn-nhãn-dữ-liệu)
-   - [1. Đánh Giá Nhãn Dựa Trên Số Sao](#1-đánh-giá-nhãn-dựa-trên-số-sao)
-   - [2. Sử Dụng Mô Hình Được Huấn Luyện Sẵn (5CD/AI)](#2-sử-dụng-mô-hình-được-huấn-luyện-sẵn-5cdai)
-4. [Công Nghệ Sử Dụng](#công-nghệ-sử-dụng)
-5. [Hướng Dẫn Cài Đặt](#hướng-dẫn-cài-đặt)
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Data Analysis Process](#data-analysis-process)
+3. [Labeling Methods](#labeling-methods)
+   - [1. Rating-Based Labeling](#1-rating-based-labeling)
+   - [2. Using a Pre-Trained Model (5CD/AI)](#2-using-a-pre-trained-model-5cdai)
+4. [Technologies Used](#technologies-used)
+5. [Installation Guide](#installation-guide)
    - [1. Clone Repository](#1-clone-repository)
-   - [2. Tạo Virtual Environment (venv)](#2-tạo-virtual-environment-venv)
-   - [3. Cài Đặt Các Thư Viện Yêu Cầu](#3-cài-đặt-các-thư-viện-yêu-cầu)
-   - [4. Chạy Project](#4-chạy-project)
-6. [Tham Khảo](#tham-khảo)
+   - [2. Create Virtual Environment (venv)](#2-create-virtual-environment-venv)
+   - [3. Install Required Libraries](#3-install-required-libraries)
+   - [4. Run the Project](#4-run-the-project)
+6. [References](#references)
 
 ---
 
-## Giới Thiệu
-Dự án này tập trung vào phân tích cảm xúc của khách hàng thông qua các phản hồi sau khi mua sản phẩm của công ty X. Dataset ban đầu chứa các feedback từ khách hàng, nhưng chưa được làm sạch và chưa gắn nhãn cảm xúc.
+## Introduction
+This project focuses on analyzing customer sentiment based on feedback received after purchasing a product from Company X. The initial dataset contains customer feedback that has not yet been cleaned or labeled.
 
-Mục tiêu của dự án là thực hiện các bước tiền xử lý, gắn nhãn dữ liệu, và phân loại cảm xúc khách hàng thành ba loại: **Tích cực**, **Tiêu cực**, và **Bình thường**. 
----
-
-## Quy Trình Phân Tích Dữ Liệu
-Dữ liệu ban đầu chứa các phản hồi từ khách hàng nhưng chưa được xử lý. Các bước chính trong quy trình phân tích bao gồm:
-
-1. **Tiền Xử Lý Dữ Liệu**: Làm sạch dữ liệu bằng cách loại bỏ các ký tự không cần thiết, xử lý từ đồng nghĩa và lỗi chính tả.
-2. **Gắn Nhãn Cảm Xúc**: Dữ liệu được phân loại thành ba nhãn cảm xúc: Tích cực, Tiêu cực, và Bình thường.
-3. **Phân Tích Cảm Xúc**: Đánh giá cảm xúc khách hàng bằng hai phương pháp gắn nhãn khác nhau.
-4. **So sánh kết quả giữa cách đánh nhãn**
-5. **visualazation**
+The goal of this project is to perform preprocessing, label the data, and classify customer sentiment into three categories: **Positive**, **Negative**, and **Neutral**.
 
 ---
 
-## Phương Pháp Gắn Nhãn Dữ Liệu
+## Data Analysis Process
+The original data contains customer feedback that has not yet been processed. The main steps in the analysis process include:
 
-### 1. Đánh Giá Nhãn Dựa Trên Số Sao
-- Phản hồi được gắn nhãn cảm xúc dựa trên số sao mà khách hàng đánh giá.
-  - **Tích cực**: Đánh giá 4 hoặc 5 sao.
-  - **Bình thường**: Đánh giá 3 sao.
-  - **Tiêu cực**: Đánh giá 1 hoặc 2 sao.
-
-### 2. Sử Dụng Mô Hình Được Huấn Luyện Sẵn (5CD/AI)
-- Sử dụng mô hình đã được huấn luyện trước - **[5CD/AI Vietnamese Sentiment visobert](https://huggingface.co/5CD-AI/Vietnamese-Sentiment-visobert)**.
-- Mô hình sẽ gắn nhãn cảm xúc cho các phản hồi và kết hợp với thuật toán **KMeans** để cải thiện độ chính xác của nhãn.
-
-Bạn có thể tìm hiểu thêm về mô hình 5CD/AI qua liên kết [tại đây](https://huggingface.co/5CD-AI/Vietnamese-Sentiment-visobert).
+1. **Data Preprocessing**: Clean the data by removing unnecessary characters, and handling synonyms and spelling errors.
+2. **Label Sentiment**: The data is classified into three sentiment categories: Positive, Negative, and Neutral.
+3. **Sentiment Analysis**: Evaluate customer sentiment using two different labeling methods.
+4. **Compare Labeling Methods**: Compare the results from the two labeling methods.
+5. **Visualization**
 
 ---
 
-## Công Nghệ Sử Dụng
-- **Ngôn Ngữ**: Python, Jupyter Notebook (`.ipynb`)
-- **Phiên Bản Python**: 3.8 trở lên
-- **Hệ Điều Hành**: Windows và macOS
+## Labeling Methods
+
+### 1. Rating-Based Labeling
+- Feedback is labeled based on the number of stars given by the customer.
+  - **Positive**: Ratings of 4 or 5 stars.
+  - **Neutral**: Rating of 2 or 3stars.
+  - **Negative**: Ratings of 0 or 1 stars.
+
+### 2. Using a Pre-Trained Model (5CD/AI)
+- Use a pre-trained model - **[5CD/AI Vietnamese Sentiment visobert](https://huggingface.co/5CD-AI/Vietnamese-Sentiment-visobert)**.
+- The model will label the sentiment of feedback and combine it with the **KMeans** algorithm to improve the accuracy of the labels.
+
+You can learn more about the 5CD/AI model via the link [here](https://huggingface.co/5CD-AI/Vietnamese-Sentiment-visobert).
+
 ---
 
-## Hướng Dẫn Cài Đặt
+## Technologies Used
+- **Language**: Python, Jupyter Notebook (`.ipynb`)
+- **Python Version**: 3.8 or higher
+- **Operating System**: Windows and macOS
+
+---
+
+## Installation Guide
 
 ### Set Up Virtual Environment and Install Libraries
 
 ```bash
 python -m venv venv
 source venv/bin/activate       # macOS/Linux
-source .venv\Scripts\activate        # Windows
-
+source .venv\Scripts\activate  # Windows
 pip install -r requirements.txt
-```
